@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 
 /**
 * Character Class
@@ -12,7 +13,7 @@ namespace eDaemon.Entities
     class Character
     {
         // Physical attributes
-        public int Strength { get; private set; }
+        public int Strength { get; set; }
         public int Dexterity { get; private set; }
         public int Agility { get; private set; }
         public int Constitution { get; private set; }
@@ -22,13 +23,8 @@ namespace eDaemon.Entities
         public int Perception { get; private set; }
         public int Charisma { get; private set; }
 
-        private int _hpTotal;
-        private int _hpCurrent;
-
-        public Character()
-        {
-
-        }
+        protected int _hpTotal;
+        protected int _hpCurrent;
 
         public Character(int strength, int dexterity, int agility, int constitution, int intelligence, int willPower, int perception, int charisma)
         {
@@ -40,7 +36,8 @@ namespace eDaemon.Entities
             WillPower = willPower;
             Perception = perception;
             Charisma = charisma;
-            _hpTotal = (Strength + Constitution) / 2; // Total HP equals the sum of Strength and Constitution scores divided by 2
+            
+            _hpTotal = (int)Math.Ceiling((double)(strength + constitution) / 2); // Total HP equals the sum of Strength and Constitution scores divided by 2
             _hpCurrent = _hpTotal;
         }
 
@@ -69,24 +66,6 @@ namespace eDaemon.Entities
         public void decreaseHP(int hp)
         {
             _hpCurrent -= hp;
-        }
-
-        public override string ToString()
-        {
-            StringBuilder sb = new StringBuilder();
-            sb.Append("Força " + Strength + " / " + getMod(Strength));
-            sb.Append("Destreza " + Dexterity + " / " + getMod(Dexterity));
-            sb.Append("Agilidade " + Agility + " / " + getMod(Agility));
-            sb.Append("Constituição " + Constitution + " / " + getMod(Constitution));
-
-            sb.Append("Inteligência " + Intelligence + " / " + getMod(Intelligence));
-            sb.Append("Força de Vontade " + WillPower + " / " + getMod(WillPower));
-            sb.Append("Percepção " + Perception + " / " + getMod(Perception));
-            sb.Append("Carisma " + Charisma + " / " + getMod(Charisma));
-
-            sb.Append("HP " + _hpTotal + " / " + _hpCurrent);
-
-            return sb.ToString();
         }
     }
 }
