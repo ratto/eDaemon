@@ -1,14 +1,16 @@
 ﻿using System.Text;
 
-namespace eDaemon.Entities
+namespace eDaemon.Entities.Character
 {
     class PlayerCharacter : Character
     {
         private string _name;
+        private int _age;
 
-        public PlayerCharacter(string name, int strength, int dexterity, int agility, int constitution, int intelligence, int willPower, int perception, int charisma) : base(strength, dexterity, agility, constitution, intelligence, willPower, perception, charisma)
+        public PlayerCharacter(string name, int age, int strength, int dexterity, int agility, int constitution, int intelligence, int willPower, int perception, int charisma) : base(strength, dexterity, agility, constitution, intelligence, willPower, perception, charisma)
         {
             _name = name;
+            _age = age;
         }
 
         public string getName()
@@ -16,10 +18,16 @@ namespace eDaemon.Entities
             return _name;
         }
 
+        public int getAge()
+        {
+            return _age;
+        }
+
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             sb.AppendLine(_name);
+            sb.AppendLine("Idade: " + _age);
             sb.AppendLine("--------------------------");
             sb.AppendLine("Força " + Strength + " / " + getMod(Strength));
             sb.AppendLine("Destreza " + Dexterity + " / " + getMod(Dexterity));

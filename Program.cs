@@ -1,5 +1,5 @@
 ﻿using System;
-using eDaemon.Entities;
+using eDaemon.Entities.Character;
 
 namespace eDaemon
 {
@@ -17,6 +17,8 @@ namespace eDaemon
             Console.WriteLine("Escolha uma classe: ");
             Console.WriteLine("1 - Tanque (FR 15, DEX 14, AGI 14, CONS 18, INT 10, WILL 10, PER 9, CAR 11)");
             Console.WriteLine("2 - Arqueiro (FR 12, DEX 17, AGI 16, CONS 11, INT 10, WILL 12, PER 14, CAR 9)");
+            Console.WriteLine("3 - Mago (FR 9, DEX 13, AGI 12, CONS 10, INT 18, WILL 16, PER 12, CAR 11)");
+            Console.WriteLine();
             int classChoice = int.Parse(Console.ReadLine());
 
             switch (classChoice)
@@ -41,6 +43,16 @@ namespace eDaemon
                     per = 14;
                     car = 9;
                     break;
+                case 3:
+                    fr = 9;
+                    dex = 13;
+                    agi = 12;
+                    cons = 10;
+                    intel = 18;
+                    will = 16;
+                    per = 12;
+                    car = 11;
+                    break;
                 default:
                     fr = 15;
                     dex = 14;
@@ -53,12 +65,35 @@ namespace eDaemon
                     break;
             }
 
-            PlayerCharacter playerCharacter = new PlayerCharacter(name, fr, dex, agi, cons, intel, will, per, car);
-            Console.WriteLine();
+            PlayerCharacter playerCharacter = new PlayerCharacter(name, 19, fr, dex, agi, cons, intel, will, per, car);
 
             Console.WriteLine("Personagem escolhido: ");
             Console.WriteLine();
             Console.WriteLine(playerCharacter.ToString());
+            Console.WriteLine("--------------------------");
+            Console.WriteLine("Pontos de perícia: " + ((playerCharacter.Intelligence * 5) + (playerCharacter.getAge() * 10)));
+            Console.WriteLine("--------------------------");
+
+            playerCharacter.CombatSkills.Add(new CombatSkill("Briga", playerCharacter.getMod(playerCharacter.Agility), playerCharacter.getMod(playerCharacter.Agility)));
+            playerCharacter.CombatSkills.Add(new CombatSkill("Arcos", playerCharacter.getMod(playerCharacter.Dexterity), playerCharacter.getMod(playerCharacter.Dexterity)));
+
+
+            Console.WriteLine("Perícias de combate");
+            foreach(CombatSkill skill in playerCharacter.CombatSkills)
+            {
+                Console.WriteLine(skill.ToString());
+            }
+            Console.WriteLine("--------------------------");
+            Console.WriteLine("Perícias");
+
+            playerCharacter.CommonSkills.Add(new Skill("Esquiva", playerCharacter.getMod(playerCharacter.Agility)));
+            playerCharacter.CommonSkills.Add(new Skill("Observação", playerCharacter.getMod(playerCharacter.Perception)));
+            playerCharacter.CommonSkills.Add(new Skill("Intimidação", playerCharacter.getMod(playerCharacter.Charisma)));
+
+            foreach(Skill skill in playerCharacter.CommonSkills)
+            {
+                Console.WriteLine(skill.ToString());
+            }
         }
     }
 }

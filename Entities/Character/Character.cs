@@ -1,14 +1,14 @@
-﻿using System;
-using System.Text;
-
-/**
+﻿/**
 * Character Class
 * This is the superclass for all the characters of the game.
 * Wether is a player character, a monster or a regular NPC that interacts 
 * with the player, will inherit this class characteristics.
 */
 
-namespace eDaemon.Entities
+using System;
+using System.Collections.Generic;
+
+namespace eDaemon.Entities.Character
 {
     class Character
     {
@@ -22,6 +22,8 @@ namespace eDaemon.Entities
         public int WillPower { get; private set; }
         public int Perception { get; private set; }
         public int Charisma { get; private set; }
+        public List<CombatSkill> CombatSkills = new List<CombatSkill>();
+        public List<Skill> CommonSkills = new List<Skill>();
 
         protected int _hpTotal;
         protected int _hpCurrent;
