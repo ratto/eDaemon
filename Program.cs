@@ -75,25 +75,33 @@ namespace eDaemon
             Console.WriteLine("--------------------------");
 
             playerCharacter.CombatSkills.Add(new CombatSkill("Briga", playerCharacter.getMod(playerCharacter.Agility), playerCharacter.getMod(playerCharacter.Agility)));
-            playerCharacter.CombatSkills.Add(new CombatSkill("Arcos", playerCharacter.getMod(playerCharacter.Dexterity), playerCharacter.getMod(playerCharacter.Dexterity)));
+            playerCharacter.CombatSkills.Add(new CombatSkill("Arcos", playerCharacter.getMod(playerCharacter.Dexterity), 0));
+            playerCharacter.CombatSkills.Add(new CombatSkill("Escudos", 0, playerCharacter.getMod(playerCharacter.Constitution)));
+            playerCharacter.CombatSkills.Add(new CombatSkill("Espadas", playerCharacter.getMod(playerCharacter.Dexterity), playerCharacter.getMod(playerCharacter.Dexterity)));
 
-
-            Console.WriteLine("Perícias de combate");
+            Console.WriteLine("PERÍCIAS DE COMBATE");
             foreach(CombatSkill skill in playerCharacter.CombatSkills)
             {
                 Console.WriteLine(skill.ToString());
             }
+
             Console.WriteLine("--------------------------");
-            Console.WriteLine("Perícias");
 
             playerCharacter.CommonSkills.Add(new Skill("Esquiva", playerCharacter.getMod(playerCharacter.Agility)));
             playerCharacter.CommonSkills.Add(new Skill("Observação", playerCharacter.getMod(playerCharacter.Perception)));
-            playerCharacter.CommonSkills.Add(new Skill("Intimidação", playerCharacter.getMod(playerCharacter.Charisma)));
-
+            playerCharacter.CommonSkills.Add(new Skill("Intimidação", playerCharacter.getMod(playerCharacter.useGreaterMod(playerCharacter.Charisma, playerCharacter.Constitution))));
+            
+            Console.WriteLine("PERÍCIAS");
             foreach(Skill skill in playerCharacter.CommonSkills)
             {
                 Console.WriteLine(skill.ToString());
             }
+
+            Console.WriteLine();
+            Console.WriteLine("--------------------------");
+            Console.WriteLine("ITENS");
+
+
         }
     }
 }

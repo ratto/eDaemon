@@ -13,15 +13,15 @@ namespace eDaemon.Entities.Character
     class Character
     {
         // Physical attributes
-        public int Strength { get; set; }
-        public int Dexterity { get; private set; }
-        public int Agility { get; private set; }
-        public int Constitution { get; private set; }
+        public int Strength { get; protected set; }
+        public int Dexterity { get; protected set; }
+        public int Agility { get; protected set; }
+        public int Constitution { get; protected set; }
         // Mental attributes
-        public int Intelligence { get; private set; }
-        public int WillPower { get; private set; }
-        public int Perception { get; private set; }
-        public int Charisma { get; private set; }
+        public int Intelligence { get; protected set; }
+        public int WillPower { get; protected set; }
+        public int Perception { get; protected set; }
+        public int Charisma { get; protected set; }
         public List<CombatSkill> CombatSkills = new List<CombatSkill>();
         public List<Skill> CommonSkills = new List<Skill>();
 
@@ -47,6 +47,18 @@ namespace eDaemon.Entities.Character
         public int getMod(int attribute)
         {
             return attribute * 4;
+        }
+
+        public int useGreaterMod(int attribute1, int attribute2)
+        {
+            if(attribute1 > attribute2)
+            {
+                return attribute1;
+            }
+            else
+            {
+                return attribute2;
+            }
         }
 
         // HP control
