@@ -75,7 +75,7 @@ namespace eDaemon
             Console.WriteLine();
             Console.WriteLine(playerCharacter.ToString());
             Console.WriteLine("--------------------------");
-            Console.WriteLine("Pontos de perícia: " + ((playerCharacter.Intelligence * 5) + (playerCharacter.getAge() * 10)));
+            Console.WriteLine("Pontos de perícia: " + ((playerCharacter.Intelligence * 5) + (playerCharacter.Age * 10)));
             Console.WriteLine("--------------------------");
 
             playerCharacter.CombatSkills.Add(new CombatSkill("Briga", playerCharacter.getMod(playerCharacter.Agility), playerCharacter.getMod(playerCharacter.Agility)));
@@ -110,7 +110,9 @@ namespace eDaemon
             weaponDamageList.Add(weaponDamage);
             weaponDamage = new Damage(DamageType.Fire, 1, 7);
             weaponDamageList.Add(weaponDamage);
-            Weapon fireLongSword = new Weapon(0142, "Flamejante", "Espada Longa", -5, weaponDamageList);
+            List<DamageType> weaponDamageTypeList1 = new List<DamageType>();
+            weaponDamageTypeList1.Add(DamageType.Fire);
+            Weapon fireLongSword = new Weapon(0142, "Espada Longa", weaponDamageTypeList1, -5, weaponDamageList);
             Console.WriteLine(fireLongSword.ToString());
 
             List<Damage> secondWeaponDamageList = new List<Damage>();
@@ -120,7 +122,10 @@ namespace eDaemon
             secondWeaponDamageList.Add(weaponDamage);
             int[] reach = { 80, 200 };
 
-            Weapon frostLongBow = new Weapon(0315, "Congelante", "Arco Longo", -9, reach, secondWeaponDamageList);
+            List<DamageType> weaponDamageTypeList2 = new List<DamageType>();
+            weaponDamageTypeList2.Add(DamageType.Cold);
+
+            Weapon frostLongBow = new Weapon(0315, "Arco Longo", weaponDamageTypeList2, -9, reach, secondWeaponDamageList);
             Console.WriteLine(frostLongBow.ToString());
 
             List<Damage> protectionIndexList = new List<Damage>();
@@ -129,7 +134,16 @@ namespace eDaemon
             protectionIndex = new Damage(DamageType.Wind, 2);
             protectionIndexList.Add(protectionIndex);
 
-            Armor galeChainShirt = new Armor(2310, "do Vendaval", "Cota de Malha", -4, -3, new List<Damage>(protectionIndexList));
+            List<DamageType> ipType = new List<DamageType>();
+            ipType.Add(DamageType.Wind);
+
+            Armor galeChainShirt = new Armor(8214, "Cota de Malha", ipType, -4, -3, protectionIndexList);
+
+            /*
+            List<DamageType> armorDamageTypeList1 = new List<DamageType>();
+            armorDamageTypeList1.Add(DamageType.Wind);
+            */
+            // Armor galeChainShirt = new Armor(2310, "do Vendaval", "Cota de Malha", -4, -3, new List<Damage>(protectionIndexList));
             Console.WriteLine(galeChainShirt.ToString());
         }
     }

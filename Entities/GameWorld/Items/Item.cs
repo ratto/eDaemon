@@ -5,9 +5,9 @@
 
 namespace eDaemon.Entities.GameWorld.Items
 {
-    class Item
+    abstract class Item
     {
-        public int Id { get; private set; }
+        public int Id { get; }
         public string Name { get; private set; }
         public double Price { get; set; }
 

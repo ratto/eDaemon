@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace eDaemon.Entities.Character
 {
-    class Character
+    abstract class Character
     {
         // Physical attributes
         public int Strength { get; protected set; }
@@ -22,6 +22,7 @@ namespace eDaemon.Entities.Character
         public int WillPower { get; protected set; }
         public int Perception { get; protected set; }
         public int Charisma { get; protected set; }
+
         public List<CombatSkill> CombatSkills = new List<CombatSkill>();
         public List<Skill> CommonSkills = new List<Skill>();
 
@@ -39,7 +40,7 @@ namespace eDaemon.Entities.Character
             Perception = perception;
             Charisma = charisma;
             
-            _hpTotal = (int)Math.Ceiling((double)(strength + constitution) / 2); // Total HP equals the sum of Strength and Constitution scores divided by 2
+            _hpTotal = (int)Math.Ceiling((double)(strength + constitution) / 2); // Total HP equals the sum of Strength and Constitution scores divided by 2 (rounded down)
             _hpCurrent = _hpTotal;
         }
 

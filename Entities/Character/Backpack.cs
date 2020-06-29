@@ -18,44 +18,16 @@ namespace eDaemon.Entities.Character
 {
     class Backpack
     {
-        private int gold;
-        private List<Item> items = new List<Item>();
+        private Item[] StoredItems;
+        private int _space; // How many cells can be used to store items
 
         public Backpack()
         {
         }
 
-        public int getGold()
+        public Backpack(int space)
         {
-            return this.gold;
-        }
 
-        public void IncreaseGold(int amount)
-        {
-            this.gold += amount;
-        }
-
-        public void DecreaseGold(int amount)
-        {
-            this.gold -= amount;
-        }
-
-        public void ShowItems()
-        {
-            foreach(Item i in items)
-            {
-                Console.WriteLine(i.ToString());
-            }
-        }
-
-        public void HoldItem(Item item)
-        {
-            items.Add(item);
-        }
-
-        public void RemoveItem(Item item)
-        {
-            items.Remove(item);
         }
     }
 }

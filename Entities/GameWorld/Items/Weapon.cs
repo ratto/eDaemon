@@ -11,80 +11,81 @@ using System.Text;
 
 namespace eDaemon.Entities.GameWorld.Items
 {
-    class Weapon : Item
+    class Weapon : Equipment
     {
-        public int iniciative;
-        public int[] reach;
-        public string prename;
-        public List<Damage> weaponDamage = new List<Damage>();
+        public int Iniciative { get; private set; }
+        public int[] Reach { get; private set; }
+
+        public List<Damage> WeaponDamage = new List<Damage>();
 
         // Common meelee weapon
         public Weapon(int id, string name, int iniciative, List<Damage> weaponDamage) : base(id, name)
         {
-            this.iniciative = iniciative;
-            this.weaponDamage = weaponDamage;
+            Iniciative = iniciative;
+            WeaponDamage = weaponDamage;
         }
 
         // Common ranged weapon
         public Weapon(int id, string name, int iniciative, int[] reach, List<Damage> weaponDamage) : base(id, name)
         {
-            this.iniciative = iniciative;
-            this.reach = reach;
-            this.weaponDamage = weaponDamage;
+            Iniciative = iniciative;
+            Reach = reach;
+            WeaponDamage = weaponDamage;
         }
 
         // Special meelee weapon
-        public Weapon(int id, string prename, string name, int iniciative, List<Damage> weaponDamage) : base(id, name)
+        public Weapon(int id, string name, List<DamageType> specialTraits, int iniciative, List<Damage> weaponDamage) : base(id, name, specialTraits)
         {
-            this.prename = prename;
-            this.iniciative = iniciative;
-            this.weaponDamage = weaponDamage;
+            Iniciative = iniciative;
+            WeaponDamage = weaponDamage;
         }
 
         // Special ranged weapon
-        public Weapon(int id, string prename, string name, int iniciative, int[] reach, List<Damage> weaponDamage) : base(id, name)
+        public Weapon(int id, string name, List<DamageType> specialTraits, int iniciative, int[] reach, List<Damage> weaponDamage) : base(id, name, specialTraits)
         {
-            this.prename = prename;
-            this.iniciative = iniciative;
-            this.reach = reach;
-            this.weaponDamage = weaponDamage;
+            Iniciative = iniciative;
+            Reach = reach;
+            WeaponDamage = weaponDamage;
         }
 
         // Common meelee weapon with price
         public Weapon(int id, string name, double price, int iniciative, List<Damage> weaponDamage) : base(id, name, price)
         {
-            this.iniciative = iniciative;
-            this.weaponDamage = weaponDamage;
+            Iniciative = iniciative;
+            WeaponDamage = weaponDamage;
         }
 
         // Common ranged weapon with price
         public Weapon(int id, string name, double price, int iniciative, int[] reach, List<Damage> weaponDamage) : base(id, name, price)
         {
-            this.iniciative = iniciative;
-            this.reach = reach;
-            this.weaponDamage = weaponDamage;
+            Iniciative = iniciative;
+            Reach = reach;
+            WeaponDamage = weaponDamage;
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
             // test if it has special feature
-            if(this.prename != null)
+            if (SpecialTraits.Count != 0)
             {
-                sb.Append(this.prename + " ");
+                foreach(DamageType trait in SpecialTraits)
+                {
+                    sb.Append(trait.ToString() + " ");
+                }
             }
-            sb.Append(this.Name + " (");
+            sb.Append(Name + " (");
 
-            foreach(Damage type in weaponDamage)
+            foreach (Damage type in WeaponDamage)
             {
                 sb.Append(type.ToString() + ", ");
             }
 
-            sb.Append(this.iniciative);
+            sb.Append(Iniciative);
             // test if it is a ranged weapon
-            if(this.reach != null)
+            if (Reach != null)
             {
-                sb.Append(", Alcance " + reach[0] + "/" + reach[1]);
+                sb.Append(", Alcance " + Reach[0] + "/" + Reach[1]);
             }
             sb.Append(")");
 

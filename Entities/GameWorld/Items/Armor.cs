@@ -4,58 +4,59 @@ using System.Text;
 
 namespace eDaemon.Entities.GameWorld.Items
 {
-    class Armor : Item
+    class Armor : Equipment
     {
-        public string prename;
+        public int DexPenalty { get; private set; }
+        public int AgiPenalty { get; private set; }
+
         public int dexPenalty;
         public int agiPenalty;
-        public List<Damage> protectionIndex = new List<Damage>();
+        public List<Damage> ProtectionIndex = new List<Damage>();
 
+        // Common armor without pricing
         public Armor(int id, string name, int dexPenalty, int agiPenalty, List<Damage> protectionIndex) : base(id, name)
         {
-            this.dexPenalty = dexPenalty;
-            this.agiPenalty = agiPenalty;
-            this.protectionIndex = protectionIndex;
+            DexPenalty = dexPenalty;
+            AgiPenalty = agiPenalty;
+            ProtectionIndex = protectionIndex;
         }
 
-        public Armor(int id, string prename, string name, int dexPenalty, int agiPenalty, List<Damage> protectionIndex) : base(id, name)
+        // Special protection armor
+        public Armor(int id, string name, List<DamageType> specialTraits, int dexPenalty, int agiPenalty, List<Damage> protectionIndex) : base(id, name, specialTraits)
         {
-            this.prename = prename;
-            this.dexPenalty = dexPenalty;
-            this.agiPenalty = agiPenalty;
-            this.protectionIndex = protectionIndex;
+            DexPenalty = dexPenalty;
+            AgiPenalty = agiPenalty;
+            ProtectionIndex = protectionIndex;
         }
 
+        // Common armor with pricing
         public Armor(int id, string name, double price, int dexPenalty, int agiPenalty, List<Damage> protectionIndex) : base(id, name, price)
         {
-            this.dexPenalty = dexPenalty;
-            this.agiPenalty = agiPenalty;
-            this.protectionIndex = protectionIndex;
-        }
-
-        public Armor(int id, string prename, string name, double price, int dexPenalty, int agiPenalty, List<Damage> protectionIndex) : base(id, name, price)
-        {
-            this.dexPenalty = dexPenalty;
-            this.agiPenalty = agiPenalty;
-            this.protectionIndex = protectionIndex;
+            DexPenalty = dexPenalty;
+            AgiPenalty = agiPenalty;
+            ProtectionIndex = protectionIndex;
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            
-            if(this.prename != null)
+            // test if it has special feature
+            if (SpecialTraits.Count != 0)
             {
-                sb.Append(this.prename + " ");
+                foreach (DamageType trait in SpecialTraits)
+                {
+                    sb.Append(trait.ToString() + " ");
+                }
             }
-            sb.Append(this.Name + " (");
 
-            foreach(Damage type in protectionIndex)
+            sb.Append(Name + " (");
+
+            foreach(Damage type in ProtectionIndex)
             {
                 sb.Append("IP " + type + ", ");
             }
 
-            sb.Append("DEX" + this.dexPenalty + " / AGI" + this.agiPenalty + ")");
+            sb.Append("DEX" + DexPenalty + " / AGI" + AgiPenalty + ")");
 
             return sb.ToString();
         }

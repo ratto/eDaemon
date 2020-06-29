@@ -1,33 +1,48 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using eDaemon.Entities.GameWorld.Items;
 
 namespace eDaemon.Entities.Character
 {
     class PlayerCharacter : Character
     {
-        private string _name;
-        private int _age;
+        public string Name { get; }
+        public int Age { get; }
+
+        private List<Item> Backpack = new List<Item>(); // This represents the player's carried items
+        
 
         public PlayerCharacter(string name, int age, int strength, int dexterity, int agility, int constitution, int intelligence, int willPower, int perception, int charisma) : base(strength, dexterity, agility, constitution, intelligence, willPower, perception, charisma)
         {
-            _name = name;
-            _age = age;
+            Name = name;
+            Age = age;
         }
 
-        public string getName()
+        // Backpack maintenance
+        public void ShowItems()
         {
-            return _name;
+            foreach(Item item in Backpack)
+            {
+                Console.WriteLine(item.ToString());
+            }
         }
 
-        public int getAge()
+        public void StoreItem(Item item) // Put an item in the backpack
         {
-            return _age;
+            Backpack.Add(item);
+        }
+
+        public void RemoveItem(Item item) // Take out an item from the backpack
+        {
+            Backpack.Remove(item);
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(_name);
-            sb.AppendLine("Idade: " + _age);
+            sb.AppendLine(Name);
+            sb.AppendLine("Idade: " + Age);
             sb.AppendLine("--------------------------");
             sb.AppendLine("Força " + Strength + " / " + getMod(Strength));
             sb.AppendLine("Destreza " + Dexterity + " / " + getMod(Dexterity));
