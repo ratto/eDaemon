@@ -1,8 +1,4 @@
-﻿using eDaemonWS.Models.Skills;
-<<<<<<< HEAD
-=======
-using System.ComponentModel.DataAnnotations;
->>>>>>> dev
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace eDaemonWS.Models.Characters
 {
@@ -18,10 +14,7 @@ namespace eDaemonWS.Models.Characters
         public short WillPower { get; set; }
         public short Perception { get; set; }
         public short Charisma { get; set; }
-<<<<<<< HEAD
+
         public ICollection<BasicSkillSet> Skills { get; set; } = new List<BasicSkillSet>();
-=======
-        public ICollection<BasicSkillSet> BasicSkillList { get; set; } = new List<BasicSkillSet>();
->>>>>>> dev
     }
 }

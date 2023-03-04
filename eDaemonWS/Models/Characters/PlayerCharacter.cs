@@ -1,5 +1,8 @@
-﻿namespace eDaemonWS.Models.Characters
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace eDaemonWS.Models.Characters
 {
+    [Table("PlayerCharacters")]
     public class PlayerCharacter : Character
     {
         public string? Name { get; set; }
