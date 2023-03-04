@@ -11,7 +11,12 @@ namespace eDaemonWS.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+<<<<<<< HEAD
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(BasicSkillContext).Assembly);
+=======
+            // modelBuilder.ApplyConfigurationsFromAssembly(typeof(BasicSkillContext).Assembly);
+            modelBuilder.Entity<BasicSkill>().ToTable(nameof(BasicSkill));
+>>>>>>> dev
         }
     }
 }
