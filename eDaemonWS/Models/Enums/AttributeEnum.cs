@@ -1,6 +1,6 @@
 ﻿namespace eDaemonWS.Models.Enums
 {
-    public enum Attribute : int
+    public enum AttributeEnum : byte
     {
         None = 0,
         Constitution = 1,

@@ -1,4 +1,6 @@
-﻿namespace eDaemonWS.Models.Characters
+﻿using eDaemonWS.Models.Skills;
+
+namespace eDaemonWS.Models.Characters
 {
     public abstract class Character
     {
@@ -11,5 +13,6 @@
         public short WillPower { get; set; }
         public short Perception { get; set; }
         public short Charisma { get; set; }
+        public ICollection<BasicSkillSet> Skills { get; set; } = new List<BasicSkillSet>();
     }
 }
