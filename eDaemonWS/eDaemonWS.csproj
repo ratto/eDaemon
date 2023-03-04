@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Data\Configuration\" />
+    <Folder Include="Migrations\BasicSkill\" />
   </ItemGroup>
 
 </Project>
