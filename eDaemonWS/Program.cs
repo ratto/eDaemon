@@ -1,4 +1,4 @@
-using eDaemonWS.Repositories;
+using eDaemonWS.Data;
 using Microsoft.EntityFrameworkCore;
 
 var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
@@ -19,6 +19,9 @@ builder.Services.AddCors(options =>
 
 builder.Services.AddControllers();
 builder.Services.AddDbContext<PlayerCharacterContext>(
+        options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
+    );
+builder.Services.AddDbContext<BasicSkillContext>(
         options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
     );
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

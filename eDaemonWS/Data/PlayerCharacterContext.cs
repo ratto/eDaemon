@@ -1,7 +1,7 @@
 ﻿using eDaemonWS.Models.Characters;
 using Microsoft.EntityFrameworkCore;
 
-namespace eDaemonWS.Repositories
+namespace eDaemonWS.Data
 {
     public class PlayerCharacterContext : DbContext
     {

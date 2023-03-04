@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using eDaemonWS.Models.Characters;
-using eDaemonWS.Repositories;
+using eDaemonWS.Data;
 
 namespace eDaemonWS.Controllers
 {
